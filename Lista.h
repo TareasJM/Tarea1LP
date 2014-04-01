@@ -1,0 +1,10 @@
+void initLista(Lista *lista);
+void next(Lista *lista);
+void prev(Lista *lista);
+void goToStart(Lista *lista);
+void goToEnd(Lista *lista);
+void clear(Lista *lista);
+void append(Lista *lista, Color newColor);
+void remove(Lista *lista, char *colorName);
+void listToText(Lista *lista);
+void textToList(Lista *lista);

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int init_color(char *nombre, char *num_red, char *num_green, char *num_blue)
+int init_color(char *nombre, int num_red, int num_green, int num_blue)
 {	
 	FILE *archivo;
 		
@@ -15,33 +15,16 @@ int init_color(char *nombre, char *num_red, char *num_green, char *num_blue)
 
 int main( int argc, char *argv[], char *envp[] ) {
     
-	int opcion;
-    // If /n issed to the .exe, display numbered listing
-    // of environment variables.
 
     if (  (argc == 6) &&strcmp( argv[1], "-i" ) == 0 )
     {
-		
-		printf("Yupi\n");
-       
-       opcion = 1;
+		init_color(argv[2],atoi(argv[3]),atoi(argv[4]), atoi(argv[5]));
+		return 0;
     }
     else
     {
-		opcion = 0;
+		return 1;
 	}
-    
-    
-    switch(opcion)
-    
-    {
-		
-    case 1: init_color(argv[2],argv[3],argv[4], argv[5]);
-			break;
-			
-    default: 	printf("BUUU WENDY BUU");
-	}
-    return 0;
-    
+        
 }
 

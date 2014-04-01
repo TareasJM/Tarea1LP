@@ -1,8 +1,3 @@
-#include "Lista.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include "Color.h"
-
 typedef struct Node
 {
     Color color;
@@ -97,42 +92,8 @@ void remove(Lista *lista, char *colorName)
             return ;
 
         }
-
+        
         next(lista);
     }
 }
 
-void listToText(Lista *lista)
-{
-    FILE *archivo;
-    
-    archivo = fopen("colors.txt","w");
-    while(lista->size >= lista->pos)
-    {   
-        Color *color = lista->current->color
-        fprintf(archivo, "%s\n%d\n%d\n%d\n",color->nombre, color->red, color->green, color->blue);
-        next(lista);
-    }
-
-
-}
-
-void textToList(Lista *lista)
-{
-    FILE *archivo;
-
-    archivo = fopen("colors.txt","r");
-
-    int red,green,blue;
-    char *nombre = (char*)malloc(sizeof(char));
-
-    while(fscanf(archivo,"%s\n%d\n%d\n%d\n", nombre,&red,&green,&blue) == 4)
-    {
-        Color *color = (Color*)malloc(sizeof(Color));
-        color->name = nombre;
-        color->red = red;
-        color->green = green;
-        color->blue = blue;
-        append(lista,color);
-    }
-}

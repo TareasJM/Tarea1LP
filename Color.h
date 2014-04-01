@@ -6,6 +6,7 @@ typedef  struct{
 	int blue;
 
 }Color;	
+
 int newColor(Color *color);
 int deleteColor(char *color);
 
