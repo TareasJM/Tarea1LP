@@ -1,3 +1,5 @@
+#ifndef _COLOR_H_
+#define _COLOR_H_
 typedef  struct{
 	
 	char* nombre;
@@ -7,7 +9,22 @@ typedef  struct{
 
 }Color;	
 
+/******** Funcion: newColor **************
+Descripcion: Funcion que crea un nuevo color y lo ingreasa a la lista
+Parametros:
+	color: Puntero a Color
+Retorno: 0->exito, 1->error
+************************************************/
 int newColor(Color *color);
+
+/******** Funcion: Nombre_Funcion **************
+Descripcion: Funcion que elimina un color de la lista
+Parametros:
+	color: string
+Retorno: 0->exito, 1->error
+************************************************/
 int deleteColor(char *color);
+
+#endif
 
 
