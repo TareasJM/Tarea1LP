@@ -136,3 +136,8 @@ void textToList(Lista *lista)
         append(lista,color);
     }
 }
+
+Color getCurrentColor(Lista *lista)
+{
+    return lista->current->color;
+}

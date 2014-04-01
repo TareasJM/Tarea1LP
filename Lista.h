@@ -91,5 +91,14 @@ Retorno: void
 ************************************************/
 void textToList(Lista *lista);
 
+/******** Funcion: getCurrentColor **************
+Descripcion: Funcion que retorna el color en la posición actual en la lista
+Parametros:
+	lista: Puntero a Lista
+Retorno: 
+	color: Color
+************************************************/
+Color getCurrentColor(Lista *lista)
+
 
 #endif
