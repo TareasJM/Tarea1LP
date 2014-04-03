@@ -25,7 +25,7 @@ Parametros:
 	lista: Puntero a Lista
 Retorno: void
 ************************************************/
-void initLista(Lista *lista);
+Lista* initLista();
 
 /******** Funcion: getPos **************
 Descripcion: Funcion que retorna posición actual en la lista 

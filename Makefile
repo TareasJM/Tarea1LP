@@ -6,8 +6,7 @@ OBJ    = $(SRC:.c=.o)
 # Compiler, Linker Defines
 CC      = /usr/bin/gcc
 CFLAGS  = -Wall
-LDFLAGS = -o
-CFDEBUG = -Wall -DDEBUG $(LDFLAGS)
+CFDEBUG = -Wall -DDEBUG
 RM      = /bin/rm -f
 
 # Compile and Assemble C Source Files into Object Files

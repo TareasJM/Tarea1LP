@@ -1,12 +1,16 @@
 #include "Lista.h"
 #include "Color.h"
 
-void initLista(Lista *lista)
-{
+Lista* initLista()
+{    
+    Lista *lista;
+    lista = (Lista *)malloc(sizeof(Lista));
     lista->head = NULL;
     lista->tail = NULL;
+    lista->current = NULL;
     lista->size = 0;
     lista->pos = 0;
+    return lista;
 }
 
 int getPos(Lista *lista)
@@ -52,7 +56,7 @@ void goToEnd(Lista *lista)
 void clear(Lista *lista)
 {
     goToEnd(lista);
-    while(lista->size > 0)
+    while(lista->size > 1)
     {
         prev(lista);
         free(lista->current->next);
@@ -64,10 +68,20 @@ void append(Lista *lista, Color *newColor)
 {
     Node *newNodo = (Node*)malloc(sizeof(Node));
     newNodo->color = newColor;
-    newNodo->next = NULL;
-    newNodo->prev = lista->tail;
-    lista->tail->next = newNodo;
-    lista->tail = newNodo;
+    if (lista->size == 0)
+    {
+        lista->head = newNodo;
+        lista->tail = newNodo;
+        lista->current = newNodo;
+        lista->pos = 1;
+    }
+    else
+    {
+        newNodo->next = NULL;
+        newNodo->prev = lista->tail;
+        lista->tail->next = newNodo;
+        lista->tail = newNodo;
+    }
     lista->size++;
 }
 
@@ -99,24 +113,26 @@ void listToText(Lista *lista)
     FILE *archivo;
     
     archivo = fopen("colors.txt","w");
-    while(lista->size >= lista->pos)
+    int n = lista->size;
+    int i = 0;
+    while(n > i)
     {   
+        i++;
         Color *color = lista->current->color;
         fprintf(archivo, "%s\n%d\n%d\n%d\n",color->nombre, color->red, color->green, color->blue);
         next(lista);
     }
-
+    fclose(archivo);
 
 }
 
 void textToList(Lista *lista)
 {
     FILE *archivo;
-
     archivo = fopen("colors.txt","r");
-
     int red,green,blue;
     char *nombre = (char*)malloc(sizeof(char));
+
 
     while(fscanf(archivo,"%s\n%d\n%d\n%d\n", nombre,&red,&green,&blue) == 4)
     {
@@ -127,6 +143,7 @@ void textToList(Lista *lista)
         color->blue = blue;
         append(lista,color);
     }
+    fclose(archivo);
 }
 
 Color* getCurrentColor(Lista *lista)
