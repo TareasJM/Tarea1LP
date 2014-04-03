@@ -1,31 +1,22 @@
 #include "Lista.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include "Color.h"
-
-typedef struct Node
-{
-    Color color;
-    // previous node
-    struct Node* prev;
-    // next node
-    struct Node* next;
-} Node;
-
-typedef struct
-{
-    Node *head;
-    Node *tail;
-    Node *current;
-    int size;
-    int pos;
-} Lista;
 
 void initLista(Lista *lista)
 {
-    lista->head = lista->tail = NULL;
+    lista->head = NULL;
+    lista->tail = NULL;
     lista->size = 0;
     lista->pos = 0;
+}
+
+int getPos(Lista *lista)
+{
+    return lista->pos;
+}
+
+int getSize(Lista *lista)
+{
+    return lista->size;
 }
 
 void next(Lista *lista)
@@ -69,37 +60,38 @@ void clear(Lista *lista)
     free(lista->current);
 }
 
-void append(Lista *lista, Color newColor)
+void append(Lista *lista, Color *newColor)
 {
-    Node newNodo = (Node*)malloc(sizeof(Node));
+    Node *newNodo = (Node*)malloc(sizeof(Node));
     newNodo->color = newColor;
     newNodo->next = NULL;
-    newNodo->prev = Lista->tail;
+    newNodo->prev = lista->tail;
     lista->tail->next = newNodo;
     lista->tail = newNodo;
     lista->size++;
 }
 
-void remove(Lista *lista, char *colorName)
+int removeNode(Lista *lista, char *colorName)
 {
     goToStart(lista);
     while(lista->size >= lista->pos)
     {
         if (strcmp(lista->current->color->nombre, colorName) == 0)
         {
+            Node *oldNode;
             oldNode = lista->current;
             lista->current->prev->next = lista->current->next;
             lista->current->next->prev = lista->current->prev;
-            lista->current = list->current->prev;
+            lista->current = lista->current->prev;
             lista->pos--;
             lista->size--;
-            free(olNode);
-            return ;
+            free(oldNode);
+            return 0;
 
         }
-
         next(lista);
     }
+    return 1;
 }
 
 void listToText(Lista *lista)
@@ -109,7 +101,7 @@ void listToText(Lista *lista)
     archivo = fopen("colors.txt","w");
     while(lista->size >= lista->pos)
     {   
-        Color *color = lista->current->color
+        Color *color = lista->current->color;
         fprintf(archivo, "%s\n%d\n%d\n%d\n",color->nombre, color->red, color->green, color->blue);
         next(lista);
     }
@@ -129,7 +121,7 @@ void textToList(Lista *lista)
     while(fscanf(archivo,"%s\n%d\n%d\n%d\n", nombre,&red,&green,&blue) == 4)
     {
         Color *color = (Color*)malloc(sizeof(Color));
-        color->name = nombre;
+        color->nombre = nombre;
         color->red = red;
         color->green = green;
         color->blue = blue;
@@ -137,7 +129,7 @@ void textToList(Lista *lista)
     }
 }
 
-Color getCurrentColor(Lista *lista)
+Color* getCurrentColor(Lista *lista)
 {
     return lista->current->color;
 }

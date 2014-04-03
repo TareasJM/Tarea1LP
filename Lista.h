@@ -1,5 +1,24 @@
 #ifndef _LISTA_H_
 #define _LISTA_H_
+
+typedef struct Node
+{
+    Color *color;
+    // previous node
+    struct Node* prev;
+    // next node
+    struct Node* next;
+} Node;
+
+typedef struct
+{
+    Node *head;
+    Node *tail;
+    Node *current;
+    int size;
+    int pos;
+} Lista;
+
 /******** Funcion: initLista **************
 Descripcion: Funcion encargada de inicializar una lista vacia 
 Parametros:
@@ -8,6 +27,21 @@ Retorno: void
 ************************************************/
 void initLista(Lista *lista);
 
+/******** Funcion: getPos **************
+Descripcion: Funcion que retorna posición actual en la lista 
+Parametros:
+	lista: Puntero a Lista
+Retorno: int
+************************************************/
+int getPos(Lista *lista);
+
+/******** Funcion: getsize **************
+Descripcion: Funcion que retorna largo actual en la lista 
+Parametros:
+	lista: Puntero a Lista
+Retorno: int
+************************************************/
+int getSize(Lista *lista);
 
 /******** Funcion: next **************
 Descripcion: Funcion que avanza un nodo en la lista
@@ -61,7 +95,7 @@ Parametros:
 	lista: Puntero a Lista
 Retorno: void
 ************************************************/
-void append(Lista *lista, Color newColor);
+void append(Lista *lista, Color *newColor);
 
 
 /******** Funcion: remove **************
@@ -69,9 +103,9 @@ Descripcion: Funcion en cargada de borrar un nodo de la lista
 Parametros:
 	lista: Puntero a Lista
 	colorName: string
-Retorno: void
+Retorno: int 0->OK; 1->ERROR
 ************************************************/
-void remove(Lista *lista, char *colorName);
+int removeNode(Lista *lista, char *colorName);
 
 
 /******** Funcion: listToText **************
@@ -98,7 +132,7 @@ Parametros:
 Retorno: 
 	color: Color
 ************************************************/
-Color getCurrentColor(Lista *lista)
+Color* getCurrentColor(Lista *lista);
 
 
 #endif
