@@ -73,8 +73,6 @@ void append(Lista *lista, Color *newColor)
     newNodo->color = newColor;
     if (lista->size == 0)
     {
-        newNodo->prev = NULL;
-        newNodo->next = NULL;
         lista->head = newNodo;
         lista->tail = newNodo;
         lista->current = newNodo;
@@ -93,46 +91,22 @@ void append(Lista *lista, Color *newColor)
 int removeNode(Lista *lista, char *colorName)
 {
     goToStart(lista);
+    printf("chpaso\n");
     do
     {
+        printf("strcmp %s - %s \n", lista->current->color->nombre, colorName);
         if (strcmp(lista->current->color->nombre, colorName) == 0)
         {
             Node *oldNode;
             oldNode = lista->current;
-            if (lista->size == 1)
-            {
-                lista->head = NULL;
-                lista->tail = NULL;
-                lista->current = NULL;
-                lista->size = 0;
-                lista->pos = 0;
-                free(oldNode);
-                return 0;
-            }
-            
-            if (lista->current == lista->tail)
-            {
-                lista->tail = lista->current->prev;  
-                lista->tail->next = NULL;  
-            }
-            else
-            {
-                lista->current->next->prev = lista->current->prev;
-            }
-            if (lista->current == lista->head)
-            {
-                lista->head = lista->head->next;
-                lista->head->prev = NULL;
-            }
-            else
-            {
-                lista->current = oldNode->prev;
-                lista->current->next = oldNode->next;
-                lista->pos--;
-            }
+            lista->current->prev->next = lista->current->next;
+            lista->current->next->prev = lista->current->prev;
+            lista->current = lista->current->prev;
+            lista->pos--;
             lista->size--;
             free(oldNode);
             return 0;
+
         }
     }while(next(lista) == 0);
     
@@ -143,16 +117,13 @@ void listToText(Lista *lista)
 {
     FILE *archivo;
     archivo = fopen("colors.txt","w");
-    if (lista->size != 0)
-    {
-        goToStart(lista);
-        do
-        {   
-            Color *color = lista->current->color;
-            fprintf(archivo, "%s\n%d\n%d\n%d\n",color->nombre, color->red, color->green, color->blue);
-        }
-        while (next(lista) == 0);
+    goToStart(lista);
+    do
+    {   
+        Color *color = lista->current->color;
+        fprintf(archivo, "%s\n%d\n%d\n%d\n",color->nombre, color->red, color->green, color->blue);
     }
+    while (next(lista) == 0);
 
     fclose(archivo);
 
