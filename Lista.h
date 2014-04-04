@@ -47,18 +47,18 @@ int getSize(Lista *lista);
 Descripcion: Funcion que avanza un nodo en la lista
 Parametros:
 	lista: Puntero a Lista
-Retorno: void
+Retorno: 0->OK; 1->end
 ************************************************/
-void next(Lista *lista);
+int next(Lista *lista);
 
 
 /******** Funcion: prev **************
 Descripcion: Funcion que retrocede un nodo en la lista
 Parametros:
 	lista: Puntero a Lista
-Retorno: void
+Retorno: int; 0->OK; 1->start
 ************************************************/
-void prev(Lista *lista);
+int prev(Lista *lista);
 
 
 /******** Funcion: goToStart **************

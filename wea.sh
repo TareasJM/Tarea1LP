@@ -1,6 +1,8 @@
 #!/bin/bash  
 rm a.out
 rm Main.o
+rm colors.txt
+> colors.txt
 make
 gcc -Wall Main.o
 clear

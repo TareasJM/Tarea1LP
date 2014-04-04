@@ -16,23 +16,24 @@ int newColor(Color *color)
 {
 	Lista *lista = initLista();
 	textToList(lista);
-	printf("PosInicial%d\n", getPos(lista));
-	while( ( getPos(lista) <= getSize(lista) ) && ( getSize(lista) > 0 ) ) 
+	goToStart(lista);
+	while( getSize(lista) > 0 ) 
 	{	
-		printf("POSHOLA%d\n", getPos(lista));
 		Color *current = getCurrentColor(lista);
 		if (strcmp( current->nombre, color->nombre) == 0)
 		{
-			printf("Nombre de color ya ingresado\n");
+			printf("Nombre de color ya ingresado (%s)\n", color->nombre);
 			return 1;
 		}  
-		next(lista);
+		if (next(lista) == 1)
+		{
+			break;
+		}
 		
 	}
 	append(lista, color);
 	listToText(lista);
 	clear(lista);
-	printf("%s\n", color->nombre);
 	return 0;
 }	
 
@@ -43,7 +44,7 @@ int deleteColor(char *colorName)
 	textToList(lista);
 	if (removeNode(lista, colorName) == 1)
 	{
-		printf("Nombre de color no ingresado\n");
+		printf("Color no existe(%s)\n", colorName);
 	}
 	else
 	{
