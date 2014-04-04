@@ -162,6 +162,10 @@ void textToList(Lista *lista)
 {
     FILE *archivo;
     archivo = fopen("colors.txt","r");
+    if( archivo == NULL ) 
+    {
+        return;
+    }
     int red,green,blue;
 
     char *nombre = (char*)malloc(sizeof(char));

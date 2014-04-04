@@ -22,4 +22,4 @@ debug:
 
 # Clean Up Objects, Exectuables, Dumps out of source directory
 clean:
-		$(RM) $(OBJ) core a.out
+		$(RM) $(OBJ) a.out
