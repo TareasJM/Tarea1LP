@@ -57,7 +57,7 @@ void goToEnd(Lista *lista)
     lista->pos = lista->size;
 }
 
-void clear(Lista *lista)
+void clearList(Lista *lista)
 {
     goToEnd(lista);
     while(prev(lista) == 0)

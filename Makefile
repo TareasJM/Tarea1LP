@@ -1,6 +1,6 @@
 # Source, Executable, Includes, Library Defines
-INCL   = Lista.h Color.h
-SRC    = Main.c Lista.c Color.c
+INCL   = Lista.h Color.h Dibujador.h
+SRC    = Main.c Lista.c Color.c Dibujador.c
 OBJ    = $(SRC:.c=.o)
 
 # Compiler, Linker Defines
@@ -11,7 +11,7 @@ RM      = /bin/rm -f
 
 # Compile and Assemble C Source Files into Object Files
 %.o: %.c
-		$(CC) -c $(CFLAGS) $*.c
+		$(CC) -c $(CFLAGS) $*.c -lncurses
 
 # Objects depend on these Libraries
 $(OBJ): $(INCL)

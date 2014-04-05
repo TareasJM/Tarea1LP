@@ -3,6 +3,7 @@
 #include <string.h>
 #include "Color.c"
 #include "Lista.c"
+#include "Dibujador.c"
 
 int main(int argc, char const *argv[])
 {
@@ -21,8 +22,11 @@ int main(int argc, char const *argv[])
     	deleteColor(colorName);
     	return 0;
     }
-    else	
+    //else if (  (argc == 3) && strcmp( argv[1], "-list" ) == 0 )
+    else
     {
-		return 1;
-	}
+    	drawPage(1);
+    	printf("aosidj\n");
+    	return 0;
+    }
 }

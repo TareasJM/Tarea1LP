@@ -1,21 +1,11 @@
 #!/bin/bash  
-gcc -Wall Main.o
+make clean
+make
+gcc -Wall Main.o -lncurses
 
-echo "i rojo"
-./a.out -i rojo 0 0 0
-echo "i azul"
-./a.out -i azul 0 0 0
-echo "i rojo"
-./a.out -i rojo 0 0 0
-echo "i verde"
-./a.out -i verde 0 0 0
-echo "d azul"
-./a.out -d azul
-echo "d verde"
-./a.out -d verde
-echo "d verde"
-./a.out -d verde
-echo "d rojo"
-./a.out -d rojo
-echo "i amarillo"
-./a.out -i amarillo 1 2 3
+# ./a.out -i rojo 1000 0 0
+# ./a.out -i azul 0 0 1000
+# ./a.out -i verde 0 1000 0
+# ./a.out -i blanco 1000 1000 1000
+
+./a.out -list

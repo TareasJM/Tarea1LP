@@ -85,7 +85,7 @@ Parametros:
 	lista: Puntero a Lista
 Retorno: void
 ************************************************/
-void clear(Lista *lista);
+void clearList(Lista *lista);
 
 
 /******** Funcion: append **************

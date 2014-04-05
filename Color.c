@@ -33,7 +33,7 @@ int newColor(Color *color)
 	}
 	append(lista, color);
 	listToText(lista);
-	clear(lista);
+	clearList(lista);
 	return 0;
 }	
 
@@ -50,6 +50,32 @@ int deleteColor(char *colorName)
 	{
 		listToText(lista);
 	}
-	clear(lista);
+	clearList(lista);
 	return 0;
 }	
+
+char *getColorName(Color *color)
+{
+	return color->nombre;
+}
+
+char *getColorRed(Color *color)
+{
+	char *red = (char*)malloc(sizeof(char)*5);
+	snprintf(red, 5, "%d", color->red);
+	return red;
+}
+
+char *getColorGreen(Color *color)
+{
+	char *green = (char*)malloc(sizeof(char)*5);
+	snprintf(green, 5, "%d", color->green);
+	return green;
+}
+
+char *getColorBlue(Color *color)
+{
+	char *blue = (char*)malloc(sizeof(char)*5);
+	snprintf(blue, 5, "%d", color->blue);
+	return blue;
+}
