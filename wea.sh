@@ -8,4 +8,5 @@ gcc -Wall Main.o -lncurses
 # ./a.out -i verde 0 1000 0
 # ./a.out -i blanco 1000 1000 1000
 
-./a.out -list
+./a.out -list 
+

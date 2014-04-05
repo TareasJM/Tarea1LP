@@ -15,18 +15,17 @@ int main(int argc, char const *argv[])
 		newColor(color);
 		return 0;
     }
-    else if (  (argc == 3) && strcmp( argv[1], "-d" ) == 0 )
+    else if (  (argc == 2) && strcmp( argv[1], "-d" ) == 0 )
     {
     	char *colorName = (char*)malloc(strlen(argv[2])+1);
     	strcpy(colorName,argv[2]);
     	deleteColor(colorName);
     	return 0;
     }
-    //else if (  (argc == 3) && strcmp( argv[1], "-list" ) == 0 )
-    else
+    else if (  (argc == 2) && strcmp( argv[1], "-list" ) == 0 )
     {
     	drawPage(1);
-    	printf("aosidj\n");
     	return 0;
     }
+    return 1;
 }
