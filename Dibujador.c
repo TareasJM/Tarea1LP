@@ -12,16 +12,18 @@ void drawColorList(int pos, char *nombre, char *red, char *green, char *blue)
 
     getmaxyx(stdscr,MaxHeight,MaxWidth);
     int height = MaxHeight/6;
-    //int width = MaxWidth/4;
     int fill = height*(pos-0.5);
 
+    init_color(6, 0, 0, 0 );
+    init_color(7, 1000, 1000, 1000 );
+    init_pair(6, 6, 7);
     init_color(pos, atoi(red), atoi(green), atoi(blue) );
     init_pair(pos, COLOR_BLACK, pos);
 
     //int posx = pos%4 + 1;
     
     attron(COLOR_PAIR(pos));
-    for(i = 0; i < height-1; i++)
+    for(i = 0; i < height-2; i++)
     {
         for(j = 5; j < MaxWidth-5; j++)
         {
@@ -31,10 +33,15 @@ void drawColorList(int pos, char *nombre, char *red, char *green, char *blue)
     }
     attroff(COLOR_PAIR(pos));
 
+	attron(COLOR_PAIR(6));
     int tab = MaxWidth - strlen(nombre) - strlen(red) - strlen(green) - strlen(blue) - 10;
-    attron(COLOR_PAIR(0));
+    for (i = 5;i<tab+5;i++)
+    {
+		mvaddch(fill,i,' ');
+	}
+   
     mvprintw(fill,tab,"%s (%s,%s,%s)\n",nombre,red,green,blue);
-    attroff(COLOR_PAIR(0));
+    attroff(COLOR_PAIR(6));
 }
 
 void drawColorGrid(int num, int posx, int posy, char *nombre, char *red, char *green, char *blue)
@@ -44,8 +51,9 @@ void drawColorGrid(int num, int posx, int posy, char *nombre, char *red, char *g
     getmaxyx(stdscr,MaxHeight,MaxWidth);
     int height = MaxHeight/6;
     int width = MaxWidth/4;
-    //int fill = height*(pos);
-
+	init_color(21, 0, 0, 0 );
+    init_color(22, 1000, 1000, 1000 );
+    init_pair(21, 21, 22);
     init_color(num, atoi(red), atoi(green), atoi(blue) );
     init_pair(num, COLOR_BLACK, num);
 
@@ -53,7 +61,7 @@ void drawColorGrid(int num, int posx, int posy, char *nombre, char *red, char *g
     posx = width*(posx - 1);
     
     attron(COLOR_PAIR(num));
-    for(i = posy; i < posy + height - 1 ; i++)
+    for(i = posy; i < posy + height - 2 ; i++)
     {
         for(j = posx + 1 ; j < posx + width ; j++)
         {
@@ -61,11 +69,15 @@ void drawColorGrid(int num, int posx, int posy, char *nombre, char *red, char *g
         }
     }
     attroff(COLOR_PAIR(num));
-
-    int tab = MaxWidth - strlen(nombre) - strlen(red) - strlen(green) - strlen(blue) - 10;
-    attron(COLOR_PAIR(0));
-    mvprintw(posy+height-1,posx,"%s (%s,%s,%s)\n",nombre,red,green,blue);
-    attroff(COLOR_PAIR(0));
+    attron(COLOR_PAIR(21));
+    int tab = width - strlen(nombre) - strlen(red) - strlen(green) - strlen(blue) - 5;
+    for (i = posx+1; i<tab+posx+1;i++)
+    {
+		mvaddch(posy+height-2,i,' ');
+	}
+	    
+    mvprintw(posy+height-2,posx + tab,"%s (%s,%s,%s)\n",nombre,red,green,blue);
+    attroff(COLOR_PAIR(21));
     
 }
 
