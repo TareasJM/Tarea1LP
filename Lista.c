@@ -57,6 +57,21 @@ void goToEnd(Lista *lista)
     lista->pos = lista->size;
 }
 
+int goToPos(Lista *lista, int pos)
+{
+    if (lista->size < pos)
+    {
+        return 1;
+    }
+    goToStart(lista);
+    int i = 0;
+    for(i=1;i<pos;i++)
+    {
+        next(lista);
+    }
+    return 0;
+}
+
 void clearList(Lista *lista)
 {
     goToEnd(lista);

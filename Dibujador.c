@@ -11,7 +11,7 @@ void drawColorList(int pos, char *nombre, char *red, char *green, char *blue)
     int MaxHeight, MaxWidth, i, j;
 
     getmaxyx(stdscr,MaxHeight,MaxWidth);
-    int height = MaxHeight/5;
+    int height = MaxHeight/6;
     //int width = MaxWidth/4;
     int fill = height*(pos-0.5);
 
@@ -42,14 +42,14 @@ void drawColorGrid(int num, int posx, int posy, char *nombre, char *red, char *g
     int MaxHeight, MaxWidth, i, j;
 
     getmaxyx(stdscr,MaxHeight,MaxWidth);
-    int height = MaxHeight/5;
+    int height = MaxHeight/6;
     int width = MaxWidth/4;
     //int fill = height*(pos);
 
     init_color(num, atoi(red), atoi(green), atoi(blue) );
     init_pair(num, COLOR_BLACK, num);
 
-    posy = height*(posy);
+    posy = height*(posy) - 2;
     posx = width*(posx - 1);
     
     attron(COLOR_PAIR(num));
@@ -85,37 +85,43 @@ void drawPage(int tipo)
     	textToList(lista);
     	goToStart(lista);
     	int ch = KEY_RIGHT;
+    	int page = 0;
     	while(ch != KEY_UP)
     	{
     		if (ch == KEY_RIGHT)
     		{
-				int i = 1;
-		    	do
-		    	{
-		    		Color *color = getCurrentColor(lista);
-			    	drawColorList(i,getColorName(color),getColorRed(color),getColorGreen(color),getColorBlue(color));
-			    	i++;
-			    	
-		    	}while (next(lista) == 0 && i < 6);
+    			if (goToPos(lista, page*5 + 1) == 0 )
+    			{
+			    	clear();
+    				page++;
+					int i = 1;
+			    	do
+			    	{
+			    		Color *color = getCurrentColor(lista);
+				    	drawColorList(i,getColorName(color),getColorRed(color),getColorGreen(color),getColorBlue(color));
+				    	i++;
+				    	
+			    	}while (next(lista) == 0 && i < 6);
+    			}
     		}
     		else if (ch == KEY_LEFT)
     		{
-    			int i = 0;
-    			while (prev(lista) == 0 && i < 6)
+    			if (page > 0)
     			{
-    				i++;
-    			}	
-    			i = 1;
-		    	do
-		    	{
-		    		Color *color = getCurrentColor(lista);
-			    	drawColorList(i,getColorName(color),getColorRed(color),getColorGreen(color),getColorBlue(color));
-			    	i++;
-			    	
-		    	}while (next(lista) == 0 && i < 6);
+			    	clear();
+    				goToPos(lista, (page-1)*5 + 1);
+    				page--;
+					int i = 1;
+			    	do
+			    	{
+			    		Color *color = getCurrentColor(lista);
+				    	drawColorList(i,getColorName(color),getColorRed(color),getColorGreen(color),getColorBlue(color));
+				    	i++;
+				    	
+			    	}while (next(lista) == 0 && i < 6);
+    			}
     		}
 	    	ch = getch();
-	    	clear();
     	}
     }
 
@@ -125,38 +131,61 @@ void drawPage(int tipo)
         textToList(lista);
         goToStart(lista);
         int ch = KEY_RIGHT;
+        int page = 0;
         while(ch != KEY_UP)
-        {
-            if (ch == KEY_LEFT)
-            {
-                int i = 0;
-                while (prev(lista) == 0 && i < 21)
-                {
-                    i++;
-                }
-            }
-            if (ch == KEY_LEFT || ch == KEY_RIGHT)
-            {
-	            clear();
-	            int x,y,i;
-	            i = 1;
-                x = 1;
-                y = 1;
-                do
-                {
-                    Color *color = getCurrentColor(lista);
-                    drawColorGrid(i,x,y,getColorName(color),getColorRed(color),getColorGreen(color),getColorBlue(color));
-                    i++;
-                    x++;
-                    if(x%5 == 0)
-                    {
-                    	x = 1;
-                    	y++;
-                    }
-                    
-                }while (next(lista) == 0 && i < 21);
-            }
-            ch = getch();
+    	{
+    		if (ch == KEY_RIGHT)
+    		{
+    			if (goToPos(lista, page*20 + 1) == 0 )
+    			{
+    				page++;
+					clear();
+		            int x,y,i;
+		            i = 1;
+	                x = 1;
+	                y = 1;
+	                do
+	                {
+	                    Color *color = getCurrentColor(lista);
+	                    drawColorGrid(i,x,y,getColorName(color),getColorRed(color),getColorGreen(color),getColorBlue(color));
+	                    i++;
+	                    x++;
+	                    if(x%5 == 0)
+	                    {
+	                    	x = 1;
+	                    	y++;
+	                    }
+	                    
+	                }while (next(lista) == 0 && i < 21);
+    			}
+    		}
+    		else if (ch == KEY_LEFT)
+    		{
+    			if (page > 0)
+    			{
+    				goToPos(lista, (page-1)*20 + 1);
+    				page--;
+					clear();
+		            int x,y,i;
+		            i = 1;
+	                x = 1;
+	                y = 1;
+	                do
+	                {
+	                    Color *color = getCurrentColor(lista);
+	                    drawColorGrid(i,x,y,getColorName(color),getColorRed(color),getColorGreen(color),getColorBlue(color));
+	                    i++;
+	                    x++;
+	                    if(x%5 == 0)
+	                    {
+	                    	x = 1;
+	                    	y++;
+	                    }
+	                    
+	                }while (next(lista) == 0 && i < 21);
+    			}
+    		}
+	    	ch = getch();
         }
     }
 
