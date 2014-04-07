@@ -27,5 +27,14 @@ int main(int argc, char const *argv[])
     	drawPage(1);
     	return 0;
     }
+    else if( (argc == 2) && strcmp( argv[1], "-grid" ) == 0 )
+    {
+    	drawPage(2);
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
     return 1;
 }
