@@ -6,23 +6,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-void drawColorList(int pos, char *nombre, char *red, char *green, char *blue)
+void drawColorList(int num, char *nombre, char *red, char *green, char *blue)
 {
     int MaxHeight, MaxWidth, i, j;
 
     getmaxyx(stdscr,MaxHeight,MaxWidth);
     int height = MaxHeight/6;
-    int fill = height*(pos-0.5);
+    int fill = height*(num-0.5);
 
     init_color(6, 0, 0, 0 );
     init_color(7, 1000, 1000, 1000 );
     init_pair(6, 6, 7);
-    init_color(pos, atoi(red), atoi(green), atoi(blue) );
-    init_pair(pos, COLOR_BLACK, pos);
+    init_color(num, atoi(red), atoi(green), atoi(blue) );
+    init_pair(num, COLOR_BLACK, num);
 
-    //int posx = pos%4 + 1;
+    //int numx = num%4 + 1;
     
-    attron(COLOR_PAIR(pos));
+    attron(COLOR_PAIR(num));
     for(i = 0; i < height-2; i++)
     {
         for(j = 5; j < MaxWidth-5; j++)
@@ -31,7 +31,7 @@ void drawColorList(int pos, char *nombre, char *red, char *green, char *blue)
         }
         fill++;
     }
-    attroff(COLOR_PAIR(pos));
+    attroff(COLOR_PAIR(num));
 
 	attron(COLOR_PAIR(6));
     int tab = MaxWidth - strlen(nombre) - strlen(red) - strlen(green) - strlen(blue) - 10;
