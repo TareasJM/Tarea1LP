@@ -33,6 +33,6 @@ Parametros:
 	int: tipo ( para dibujar lista o grid)
 Retorno: void
 ************************************************/
-void drawPage(int tipo)
+void drawPage(int tipo);
 
 #endif
