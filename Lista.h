@@ -51,7 +51,6 @@ Retorno: 0->OK; 1->end
 ************************************************/
 int next(Lista *lista);
 
-
 /******** Funcion: prev **************
 Descripcion: Funcion que retrocede un nodo en la lista
 Parametros:
@@ -59,7 +58,6 @@ Parametros:
 Retorno: int; 0->OK; 1->start
 ************************************************/
 int prev(Lista *lista);
-
 
 /******** Funcion: goToStart **************
 Descripcion: Funcion que apunta el nodo actual al inicio de la lista
@@ -69,7 +67,6 @@ Retorno: void
 ************************************************/
 void goToStart(Lista *lista);
 
-
 /******** Funcion: goToEnd **************
 Descripcion: Funcion que apunta el nodo actual al fin de la lista
 Parametros:
@@ -78,6 +75,13 @@ Retorno: void
 ************************************************/
 void goToEnd(Lista *lista);
 
+/******** Funcion: goToPos **************
+Descripcion: Funcion que apunta el nodo actual al la posición indicada en la lista
+Parametros:
+	lista: Puntero a Lista
+Retorno: entero; 1->Posición inválida, 0-> OK
+************************************************/
+int goToPos(Lista *lista, int pos);
 
 /******** Funcion: clear **************
 Descripcion: Funcion en cargada de vaciar la lista y liberar punteros
@@ -86,7 +90,6 @@ Parametros:
 Retorno: void
 ************************************************/
 void clearList(Lista *lista);
-
 
 /******** Funcion: append **************
 Descripcion: Funcion en cargada de agregar un nodo al fin de la lista
@@ -97,7 +100,6 @@ Retorno: void
 ************************************************/
 void append(Lista *lista, Color *newColor);
 
-
 /******** Funcion: remove **************
 Descripcion: Funcion en cargada de borrar un nodo de la lista
 Parametros:
@@ -107,7 +109,6 @@ Retorno: int 0->OK; 1->ERROR
 ************************************************/
 int removeNode(Lista *lista, char *colorName);
 
-
 /******** Funcion: listToText **************
 Descripcion: Funcion en cargada guardar los colores de la lista en el archivo "colors.txt"
 Parametros:
@@ -115,7 +116,6 @@ Parametros:
 Retorno: void
 ************************************************/
 void listToText(Lista *lista);
-
 
 /******** Funcion: textToList **************
 Descripcion: Funcion en cargada de leer el archivo "colors.txt" e ingresa los colores en la lista
@@ -133,6 +133,5 @@ Retorno:
 	color: Color
 ************************************************/
 Color* getCurrentColor(Lista *lista);
-
 
 #endif

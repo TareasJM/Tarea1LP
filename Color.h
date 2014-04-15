@@ -28,13 +28,46 @@ Retorno: 0->exito, 1->error
 ************************************************/
 int newColor(Color *color);
 
-/******** Funcion: Nombre_Funcion **************
+/******** Funcion: deleteColor **************
 Descripcion: Funcion que elimina un color de la lista
 Parametros:
 	color: string
 Retorno: 0->exito, 1->error
 ************************************************/
 int deleteColor(char *colorName);
+
+/******** Funcion: getColorName **************
+Descripcion: Funcion que retorna el nombre de un Color
+Parametros:
+	color: puntero a Color
+Retorno: string
+************************************************/
+char *getColorName(Color *color);
+
+/******** Funcion: getColorRed **************
+Descripcion: Funcion que retorna el valor rojo del Color 
+Parametros:
+	color: puntero a Color
+Retorno: int
+************************************************/
+char *getColorRed(Color *color);
+
+/******** Funcion: getColorGreen **************
+Descripcion: Funcion que retorna el valor verde del Color 
+Parametros:
+	color: puntero a Color
+Retorno: int
+************************************************/
+char *getColorGreen(Color *color);
+
+/******** Funcion: getColorBlue **************
+Descripcion: Funcion que retorna el valor azul del Color
+Parametros:
+	color: puntero a Color
+Retorno: int
+************************************************/
+char *getColorBlue(Color *color);
+
 
 #endif
 

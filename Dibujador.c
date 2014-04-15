@@ -9,6 +9,7 @@
 void drawColorList(int pos, char *nombre, char *red, char *green, char *blue)
 {
     int MaxHeight, MaxWidth, i, j;
+    init_pair(0,COLOR_BLACK,COLOR_WHITE); // COLOR LETRA; COLOR FONDO
 
     getmaxyx(stdscr,MaxHeight,MaxWidth);
     int height = MaxHeight/6;
@@ -40,6 +41,7 @@ void drawColorList(int pos, char *nombre, char *red, char *green, char *blue)
 void drawColorGrid(int num, int posx, int posy, char *nombre, char *red, char *green, char *blue)
 {
     int MaxHeight, MaxWidth, i, j;
+    init_pair(0,COLOR_BLACK,COLOR_WHITE); // COLOR LETRA; COLOR FONDO
 
     getmaxyx(stdscr,MaxHeight,MaxWidth);
     int height = MaxHeight/6;
@@ -62,9 +64,9 @@ void drawColorGrid(int num, int posx, int posy, char *nombre, char *red, char *g
     }
     attroff(COLOR_PAIR(num));
 
-    int tab = MaxWidth - strlen(nombre) - strlen(red) - strlen(green) - strlen(blue) - 10;
+    int tab = posx + width - strlen(nombre) - strlen(red) - strlen(green) - strlen(blue) - 5;
     attron(COLOR_PAIR(0));
-    mvprintw(posy+height-1,posx,"%s (%s,%s,%s)\n",nombre,red,green,blue);
+    mvprintw(posy+height-1,tab,"%s (%s,%s,%s)\n",nombre,red,green,blue);
     attroff(COLOR_PAIR(0));
     
 }

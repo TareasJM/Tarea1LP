@@ -34,7 +34,11 @@ int main(int argc, char const *argv[])
     }
     else
     {
+        printf("Opciones validas:\n");
+        printf("    -i name red green blue (ingresa color name (red,green,blue))\n");
+        printf("    -d name                (borra el color name)\n");
+        printf("    -list                  (muestra los colores en una lista)\n");
+        printf("    -grid                  (muestra los colores en una cuadricula)\n");
         return 1;
     }
-    return 1;
 }
